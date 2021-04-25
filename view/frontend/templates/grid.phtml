@@ -1,0 +1,61 @@
+<?php /** @var \PocztaPolska\Tracking\Block\Grid $block */ ?>
+<?php
+$trackData = $block->getData('track_data');
+$tracks = $trackData['tracks'];
+?>
+
+<div class="table-wrapper">
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption">__('Package information')</caption>
+        <tbody>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Package number');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['number'];?></td>
+            </tr>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Shipping date');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['shipping_date'];?></td>
+            </tr>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Package type');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['package_type'];?></td>
+            </tr>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Dispatch country');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['dispatch_country'];?></td>
+            </tr>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Country of destination');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['destination_country'];?></td>
+            </tr>
+            <tr>
+                <td data-th="" class="col id"><?php echo __('Dispatch office');?></td>
+                <td data-th="" class="col id"><?php echo $trackData['dispatch_office'];?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<?php if (false === empty($tracks)): ?>
+<div class="table-wrapper">
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption">__('Package status')</caption>
+        <thead>
+            <tr>
+                <th scope="col" class="col id"><?php echo __('Event name'); ?></th>
+                <th scope="col" class="col id"><?php echo __('Date and time'); ?></th>
+                <th scope="col" class="col id"><?php echo __('Post office'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($tracks as $track): ?>
+            <tr>
+                <td data-th="" class="col id"><?php echo $track['activity'];?></td>
+                <td data-th="" class="col id"><?php echo $track['date'];?></td>
+                <td data-th="" class="col id"><?php echo $track['location'];?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>

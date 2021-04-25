@@ -1,0 +1,28 @@
+<?php /** @var \PocztaPolska\Tracking\Block\Form $block */ ?>
+<form class="form contact"
+      action="<?php echo $block->escapeUrl($block->getFormAction()); ?>"
+      id="tracking-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Track your package')) ?></span></legend><br />
+        <div class="field name required">
+            <label class="label" for="tracking_number"><span><?= $block->escapeHtml(__('Tracking number')) ?></span></label>
+            <div class="control">
+                <input name="tracking_number"
+                       id="tracking_number"
+                       title="<?= $block->escapeHtmlAttr(__('Tracking number')) ?>"
+                       value="<?= $block->escapeHtmlAttr($this->helper(\Magento\Contact\Helper\Data::class)->getPostValue('tracking_number') ?: $this->helper(\Magento\Contact\Helper\Data::class)->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
